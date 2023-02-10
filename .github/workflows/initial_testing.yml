@@ -22,19 +22,18 @@ jobs:
 
       - name: Perform tests
         id: hdoc_build
-        continue-on-error: true
         run: |
           npm install hdoc-tools -g
           hdoc build
           
       - name: Reject Pull Request
-        if: ${{ failure() && steps.hdoc_build.outcome == 'failure' }}
+        if: failure()
         uses: superbrothers/close-pull-request@v3
         with:
           comment: "Your pull request has been rejected as the hdoc build validation has failed."
           
       - name: Accept Pull Request
-        if: ${{ steps.hdoc_build.outcome != 'failure' }}
+        if: success()
         uses: CatChen/accept-to-ship-action@v0.3
         with:
           merge-method: merge
