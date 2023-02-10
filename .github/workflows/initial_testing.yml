@@ -38,6 +38,7 @@ jobs:
           
       - name: Accept Pull Request
         if: success()
-        uses: gr2m/create-or-update-pull-request-action@v1
+        uses: juliangruber/approve-pull-request-action@v2.0.0
         with:
-          auto-merge: merge
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          number: 1
