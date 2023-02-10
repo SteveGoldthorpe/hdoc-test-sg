@@ -38,7 +38,6 @@ jobs:
           
       - name: Accept Pull Request
         if: success()
-        uses: CatChen/accept-to-ship-action@v0.3
+        uses: gr2m/create-or-update-pull-request-action@v1
         with:
-          merge-method: merge
-          timeout: 0
+          auto-merge: merge
