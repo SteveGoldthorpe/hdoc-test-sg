@@ -1,7 +1,7 @@
 name: HDoc_Validation
 on:
   # Triggers the workflow on pull request opened or reopened events
-  pull_request:
+  pull_request_target:
     types: [opened, reopened]
 
   # Allows us to run this workflow manually from the Actions tab
