@@ -37,14 +37,12 @@ jobs:
           comment: "Your pull request has been rejected as the hdoc build validation has failed."
           
       - name: Accept Pull Request
-        if: success()
-        uses: buildsville/simple-merge@v1
         id: merge
+        if: success()
+        uses: maxkomarychev/merge-pal-action@vX.Y.Z
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          method: 'squash'
-          title: 'HDoc Tests PASS'
-          message: 'Merged'
+          
       - name: result
         run: |
           echo "result: ${{ steps.merge.outputs.result }}"
