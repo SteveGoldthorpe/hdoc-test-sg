@@ -28,13 +28,13 @@ jobs:
           hdoc build
           
       - name: Reject Pull Request
-        if: failure() && steps.hdoc_build.outcome == 'failure'
+        if: ${{ failure() && steps.hdoc_build.outcome == 'failure' }}
         uses: superbrothers/close-pull-request@v3
         with:
           comment: "Your pull request has been rejected as the hdoc build validation has failed."
           
       - name: Accept Pull Request
-        if: steps.hdoc_build.outcome != 'failure'
+        if: ${{ steps.hdoc_build.outcome != 'failure' }}
         uses: CatChen/accept-to-ship-action@v0.3
         with:
           merge-method: merge
