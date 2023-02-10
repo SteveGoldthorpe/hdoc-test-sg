@@ -38,10 +38,8 @@ jobs:
           
       - name: Accept Pull Request
         if: success()
-        uses: davideviolante/pr-automerge-action@v1.3.3
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: juliangruber/merge-pull-request-action@v1
         with:
-          merge-method: 'squash' # Default 'squash'
-          min-approvals: 0 # Default 2
-          base-ref: ${{ github.base_ref }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          number: 1
+          method: squash
