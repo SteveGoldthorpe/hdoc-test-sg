@@ -38,7 +38,8 @@ jobs:
           
       - name: Accept Pull Request
         if: success()
-        uses: juliangruber/approve-pull-request-action@v2.0.0
+        uses: juliangruber/merge-pull-request-action@v1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           number: 1
+          method: squash
