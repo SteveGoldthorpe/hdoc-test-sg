@@ -38,8 +38,13 @@ jobs:
           
       - name: Accept Pull Request
         if: success()
-        uses: juliangruber/merge-pull-request-action@v1
+        uses: buildsville/simple-merge@v1
+        id: merge
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          number: 1
-          method: squash
+          token: ${{ secrets.GITHUB_TOKEN }}
+          method: 'squash'
+          title: 'HDoc Tests PASS'
+          message: 'Merged'
+      - name: result
+        run: |
+          echo "result: ${{ steps.merge.outputs.result }}"
