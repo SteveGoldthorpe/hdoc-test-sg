@@ -34,9 +34,6 @@ jobs:
             valout=$(echo "$result" | awk '/Validation Output/,0')
             printf "Build Failed!\n\n-----------------------\n"
             printf "$valout"
-            echo 'BUILD_OUTPUT<<EOF' >> $GITHUB_ENV
-            printf "$valout" >> $GITHUB_ENV
-            echo 'EOF' >> $GITHUB_ENV
             exit 1
           fi
 
@@ -44,7 +41,7 @@ jobs:
         if: failure()
         uses: superbrothers/close-pull-request@v3
         with:
-          comment: "Your pull request has been rejected as build validation has failed: ${{env.BUILD_OUTPUT}}"
+          comment: "Your pull request has been rejected as build validation has failed: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           
       - name: Build Success
         if: success()
