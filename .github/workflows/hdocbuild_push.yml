@@ -1,4 +1,4 @@
-name: HDocBuild
+name: HDocBuild_Push
 on:
   # Triggers the workflow on push requests
   push:
@@ -36,11 +36,11 @@ jobs:
             exit 1
           fi
 
-      - name: Reject Pull Request
+      - name: Undo Push
         if: failure()
-        uses: superbrothers/close-pull-request@v3
+        uses: exions/undo-push@v1
         with:
-          comment: "Your push request has been rejected as build validation has failed. See the Perform Validation step of the build job for more information: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          branch: ${{ github.event.inputs.branch }}
           
       - name: Build Success
         if: success()
