@@ -25,14 +25,14 @@ jobs:
         run: |
           echo "::set-output name=BUILD_OUTPUT::$(
             npm install hdoc-tools -g
-            hdoc build | grep '-{23}.*'
+            hdoc build
           )"
 
       - name: Reject Pull Request
         if: failure()
         uses: superbrothers/close-pull-request@v3
         with:
-          comment: "Your pull request has been rejected as build validation has failed. Check the output of the Perform Validation action for more information. ${{ steps.hdocbuild.outputs.BUILD_OUTPUT }}"
+          comment: "Your pull request has been rejected as build validation has failed: ${{ steps.hdocbuild.outputs.BUILD_OUTPUT }}"
           
       - name: Build Success
         if: success()
