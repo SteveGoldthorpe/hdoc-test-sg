@@ -4,4 +4,4 @@ layout: article-toc
 # Welcome 
 This is your first page
 
-[Broken link](https://www.hornbill.com)
+[Broken link](https://nothing.exists.here)
