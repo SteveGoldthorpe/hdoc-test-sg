@@ -36,13 +36,7 @@ jobs:
             printf "$valout"
             exit 1
           fi
-
-      - name: Undo Push
-        if: failure()
-        uses: exions/undo-push@v1
-        with:
-          branch: ${{ github.event.inputs.branch }}
           
       - name: Build Success
         if: success()
-        run: echo "::notice::Build validation passed successfully. Push request accepted."
+        run: echo "::notice::Build validation passed successfully."
