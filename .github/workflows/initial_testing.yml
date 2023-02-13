@@ -20,8 +20,7 @@ jobs:
         with:
           node-version: 18
 
-      - name: Perform tests
-        id: hdoc_build
+      - name: Perform Validation
         run: |
           npm install hdoc-tools -g
           hdoc build
