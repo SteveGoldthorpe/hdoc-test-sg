@@ -33,4 +33,4 @@ jobs:
           
       - name: Build Success
         if: success()
-        run: echo "::notice::Tests passed successfully. Pull request accepted and passed for authorisation."
+        run: echo "::notice::Build validation passed successfully. Pull request accepted and passed for authorisation."
