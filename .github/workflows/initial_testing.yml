@@ -27,12 +27,13 @@ jobs:
         id: hdocbuild
         run: |
           if result=`hdoc build 2>&1`; then
-              # Command success - result contains stdout
-              echo "BUILD_OUTPUT=$result" >> $GITHUB_OUTPUT
+              echo "Build Success"
+              echo "$result"
               exit 0
           else
               valout=`echo $result | sed -n -e '/Validation Output/,$p'`
-              # Command failed - result contains stderr output, which was redirected into stdout of command
+              echo "Build Failed!"
+              echo "$valout"
               echo "BUILD_OUTPUT=$valout" >> $GITHUB_OUTPUT
               exit 1
           fi
