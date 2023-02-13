@@ -20,13 +20,22 @@ jobs:
         with:
           node-version: 18
 
+      - name: Install hdoc-tools
+        run: npm install hdoc-tools -g
+            
       - name: Perform Validation
         id: hdocbuild
         run: |
-          echo "::set-output name=BUILD_OUTPUT::$(
-            npm install hdoc-tools -g
-            hdoc build
-          )"
+          if result=`hdoc build 2>&1`; then
+              # Command success - result contains stdout
+              echo "BUILD_OUTPUT=$result" >> $GITHUB_OUTPUT
+              exit 0
+          else
+              validation_output = $(echo "$result" | grep -Pzo '-{23}.*' 
+              # Command failed - result contains stderr output, which was redirected into stdout of command
+              echo "BUILD_OUTPUT=$validation_output" >> $GITHUB_OUTPUT
+              exit 1
+          fi
 
       - name: Reject Pull Request
         if: failure()
