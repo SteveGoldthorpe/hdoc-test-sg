@@ -36,9 +36,6 @@ jobs:
         with:
           comment: "Your pull request has been rejected as the hdoc build validation has failed."
           
-      - name: Accept Pull Request
-        id: merge
+      - name: Tests Passed Successfully
         if: success()
-        uses: maxkomarychev/merge-pal-action@v0.5.1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+        run: echo "Tests passed successfully. Pull request accepted and passed for authorisation."
