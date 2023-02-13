@@ -31,7 +31,7 @@ jobs:
               echo "BUILD_OUTPUT=$result" >> $GITHUB_OUTPUT
               exit 0
           else
-              validation_output = $(echo "$result" | grep -Pzo '-{23}.*' 
+              validation_output = $(echo "$result" | grep -Pzo '-{23}.*')
               # Command failed - result contains stderr output, which was redirected into stdout of command
               echo "BUILD_OUTPUT=$validation_output" >> $GITHUB_OUTPUT
               exit 1
