@@ -34,7 +34,7 @@ jobs:
             valout=$(echo "$result" | awk '/Validation Output/,0')
             printf "Build Failed!\n\n-----------------------\n"
             printf "$valout"
-            echo "BUILD_OUTPUT=$valout" >> $GITHUB_OUTPUT
+            printf "BUILD_OUTPUT=$valout" >> $GITHUB_OUTPUT
             exit 1
           fi
 
