@@ -41,7 +41,7 @@ jobs:
         if: failure()
         uses: superbrothers/close-pull-request@v3
         with:
-          comment: "Your pull request has been rejected as build validation has failed. See the Perform Validation step of the workflow run for more information: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          comment: "Your pull request has been rejected as build validation has failed. See the Perform Validation step of the build job for more information: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           
       - name: Build Success
         if: success()
