@@ -1,4 +1,4 @@
-name: HDoc_Validation
+name: HDocBuild
 on:
   # Triggers the workflow on pull request opened or reopened events
   pull_request_target:
@@ -6,10 +6,6 @@ on:
 
   # Allows us to run this workflow manually from the Actions tab
   workflow_dispatch:
-
-permissions:
-  contents: write
-  pull-requests: write
   
 jobs:
   build:
@@ -24,21 +20,17 @@ jobs:
         with:
           node-version: 18
 
-      - name: Perform tests
-        id: hdoc_build
+      - name: Perform Validation
         run: |
           npm install hdoc-tools -g
           hdoc build
-          
+
       - name: Reject Pull Request
         if: failure()
         uses: superbrothers/close-pull-request@v3
         with:
-          comment: "Your pull request has been rejected as the hdoc build validation has failed."
+          comment: "Your pull request has been rejected as build validation has failed. Check the output of the Perform Validation action for more information."
           
-      - name: Accept Pull Request
-        id: merge
+      - name: Build Success
         if: success()
-        uses: maxkomarychev/merge-pal-action@v0.5.1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+        run: echo "::notice::Build validation passed successfully. Pull request accepted and passed for authorisation."
