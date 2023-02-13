@@ -38,4 +38,4 @@ jobs:
           
       - name: Tests Passed Successfully
         if: success()
-        run: echo "Tests passed successfully. Pull request accepted and passed for authorisation."
+        run: echo "::notice::Tests passed successfully. Pull request accepted and passed for authorisation."
