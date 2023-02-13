@@ -27,15 +27,15 @@ jobs:
         id: hdocbuild
         run: |
           if result=`hdoc build 2>&1`; then
-              echo "Build Success"
-              echo -e "$result"
+              printf "Build Success!\n\n"
+              printf "$result"
               exit 0
           else
-              valout=`echo -e $result | sed -n -e '/Validation Output/,$p'`
-              echo "Build Failed!"
-              echo -e "$valout"
-              echo "BUILD_OUTPUT=$valout" >> $GITHUB_OUTPUT
-              exit 1
+            valout=$(echo "$result" | awk '/Validation Output/,0')
+            printf "Build Failed!\n\n-----------------------\n"
+            printf "$valout"
+            # echo "BUILD_OUTPUT=$valout" >> $GITHUB_OUTPUT
+            exit 1
           fi
 
       - name: Reject Pull Request
