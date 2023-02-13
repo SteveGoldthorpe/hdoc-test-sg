@@ -21,9 +21,12 @@ jobs:
           node-version: 18
 
       - name: Perform Validation
+        id: hdocbuild
         run: |
-          npm install hdoc-tools -g
-          hdoc build
+          echo "::set-output name=BUILD_OUTPUT::$(
+            npm install hdoc-tools -g
+            hdoc build | grep '-{23}.*'
+          )"
 
       - name: Reject Pull Request
         if: failure()
