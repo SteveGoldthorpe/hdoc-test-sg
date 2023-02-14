@@ -3,7 +3,9 @@ on:
   # Triggers the workflow on pull request opened or reopened events
   pull_request_target:
     types: [opened, reopened]
-
+    paths-ignore:
+      - '.github/**'
+      
   # Allows us to run this workflow manually from the Actions tab
   workflow_dispatch:
   
@@ -22,7 +24,11 @@ jobs:
 
       - name: Install hdoc-tools
         run: npm install hdoc-tools -g
-            
+        
+      - name: Output github event name
+        run: |
+          echo "${{ github.event_name }}"
+
       - name: Perform Validation
         id: hdocbuild
         run: |
