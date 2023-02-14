@@ -2,6 +2,8 @@ name: HDocBuild_Push
 on:
   # Triggers the workflow on push requests
   push:
+    paths-ignore:
+      - '.github/**'
 
   # Allows us to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -22,7 +24,12 @@ jobs:
 
       - name: Install hdoc-tools
         run: npm install hdoc-tools -g
-            
+     
+      - name: Output github event name
+        run: |
+          echo "${{ github.event_name }}"
+          echo "${{ github.event }}"
+        
       - name: Perform Validation
         id: hdocbuild
         run: |
