@@ -10,4 +10,4 @@ on:
   
 jobs:
   run-shared-push-validation:
-    uses: Hornbill-Docs/hdoc-library/.github/workflows/hdocbuild_shared_push.yml@f747d09f8486273eec1f4368bdb973db83b593e6
+    uses: Hornbill-Docs/hdoc-library/.github/workflows/hdocbuild_shared_push.yml@8c43ee2385d364537ecee64b9860869efc73766c
