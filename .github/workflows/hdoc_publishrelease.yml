@@ -44,8 +44,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          file: "*.zip"
-          delete_file: "random-name-*.txt;random-*.txt"
+          file: "/home/runner/work/hdoc-test-sg/hdoc-test-sg/_work/hdoc-test-sg.zip"
           release_id: ${{ steps.create_release.outputs.id }}
           overwrite: true
           verbose: true
