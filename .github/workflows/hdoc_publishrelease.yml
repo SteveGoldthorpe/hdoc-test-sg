@@ -41,6 +41,8 @@ jobs:
       - name: Update Release
         uses: xresloader/upload-to-github-release@main
         if: success()
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           file: "*.zip"
           delete_file: "random-name-*.txt;random-*.txt"
