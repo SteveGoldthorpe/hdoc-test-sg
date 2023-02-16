@@ -12,10 +12,12 @@ jobs:
   publish_release:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout Main
+        uses: actions/checkout@v3
 
       # Setup NodeJS LTS (18 currently)
-      - uses: actions/setup-node@v3
+      - name: Setup NodeJS v18
+        uses: actions/setup-node@v3
         with:
           node-version: 18
 
@@ -24,7 +26,7 @@ jobs:
         run: npm install hdoc-tools -g
      
      # Run hdoc build against checked-out content
-      - name: Perform Validation
+      - name: Build Book Content
         id: hdocbuild
         run: |
           if result=`hdoc build 2>&1`; then
@@ -38,7 +40,7 @@ jobs:
             exit 1
           fi
 
-      - name: Update Release
+      - name: Copy Built Content To Latest Release
         uses: xresloader/upload-to-github-release@main
         if: success()
         env:
